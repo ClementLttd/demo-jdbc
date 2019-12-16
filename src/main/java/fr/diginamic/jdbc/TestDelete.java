@@ -1,13 +1,14 @@
-package fr.diginamic.props;
+package fr.diginamic.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-public class TestConnexionJdbc {
+public class TestDelete {
 
 	public static void main(String[] args) {
-
+		
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -17,16 +18,17 @@ public class TestConnexionJdbc {
 
 		try {
 			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/compta", "root", "");
+			Statement state = connection.createStatement();
+			int curseur3 = state.executeUpdate("DELETE FROM fournisseur WHERE NOM='La Maison des Peintures'");
+		
+		state.close();
+		connection.close();
 
-			System.out.println(connection);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 
-			connection.close();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		}
+	}
 
 	}
 
