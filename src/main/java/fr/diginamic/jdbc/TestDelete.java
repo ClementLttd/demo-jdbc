@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class TestDelete {
 
 	public static void main(String[] args) {
-		
+
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -20,15 +20,15 @@ public class TestDelete {
 			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/compta", "root", "");
 			Statement state = connection.createStatement();
 			int curseur3 = state.executeUpdate("DELETE FROM fournisseur WHERE NOM='La Maison des Peintures'");
-		
-		state.close();
-		connection.close();
 
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+			state.close();
+			connection.close();
 
-	}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
 
 	}
 
