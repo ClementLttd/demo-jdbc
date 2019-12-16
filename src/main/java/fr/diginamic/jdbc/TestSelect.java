@@ -12,8 +12,9 @@ import fr.diginamic.jdbc.entites.Fournisseur;
 
 public class TestSelect {
 
-	public static void main(String[] args) {
-
+		public List<Fournisseur> extraire(){
+			ArrayList<Fournisseur> fournisseur = new ArrayList<>();
+	
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -42,6 +43,7 @@ public class TestSelect {
 			e.printStackTrace();
 
 		}
+		return fournisseur;
 
 	}
 

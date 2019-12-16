@@ -1,13 +1,16 @@
-package fr.diginamic.jdbc;
+package fr.diginamic.jdbc.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class TestUpdate {
+import fr.diginamic.jdbc.entites.Fournisseur;
+
+public class TestFournisseurDao {
 
 	public static void main(String[] args) {
+		
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -17,10 +20,12 @@ public class TestUpdate {
 
 		try {
 			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/compta", "root", "");
-			Statement state = connection.createStatement();
-			int curseur2 = state.executeUpdate(
-					"UPDATE fournisseur SET NOM='La Maison des Peintures' WHERE NOM='La Maison de la Peinture'");
-			state.close();
+			Statement stat = connection.createStatement();
+			int curseur = stat.executeUpdate("INSERT INTO fournisseur (ID,NOM) VALUES (4, 'L''Espace Création')");
+			
+			System.out.println(curseur);
+			
+			stat.close();
 			connection.close();
 
 		} catch (SQLException e) {
@@ -28,6 +33,7 @@ public class TestUpdate {
 			e.printStackTrace();
 
 		}
+		
 
 	}
 
